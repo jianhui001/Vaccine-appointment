@@ -14,7 +14,7 @@
             <text>{{item.date}} {{item.period}}</text>
         </view>
         <view class="reg-cancel">
-            <text :class="item.cancel ? '' : 'prevent_style'">{{ item.cancel ? '取消预约' : '已取消预约' }}</text>
+            <text :class="item.cancel ? '' : 'prevent_style'" @click="Cancel(item._id, index)">{{ item.cancel ? '取消预约' : '已取消预约' }}</text>
         </view>
     </view>
 
@@ -37,6 +37,13 @@ onShow(async () => {
         show.value = true
     }
 })
+
+async function Cancel(id:string, index:number) {
+    const res:any = await RequestApi.CovidCancel({_id: id})
+    if(res.statusCode == 200) {
+        order.value[index].cancel = false
+    }
+}
 </script>
 
 <style>

@@ -3,9 +3,7 @@ import { Base64 } from "js-base64"
 
 function getToken(): string {
     const token = uni.getStorageSync('wxuser').user_Token || ''
-	console.log('token', token)
     const base64_token = Base64.encode(token + ':')
-	console.log('base64_token',base64_token)
     return 'Basic ' + base64_token
 }
 
@@ -70,7 +68,9 @@ const RequestApi = {
     NewappTime: () => request('newapptime', 'GET', {}),
 	RescoVid: (data: object) =>request('rescovid', 'POST', data),
 	WxLogin: (data: object) => request('wx_login', 'POST', data),
-	CoviduserOrder: () => request('coviduser_order', 'GET', {})
+	CoviduserOrder: () => request('coviduser_order', 'GET', {}),
+	CovidCancel: (data: object) => request('covidcancel', 'GET', data),
+	OtuHpv: () => request('otuhpv', 'GET', {}),
 }
 
 export { RequestApi }
