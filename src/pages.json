@@ -1,6 +1,12 @@
 {
 	"pages": [
 		{
+			"path": "pages/hpv-vaccine/hpv-bug",
+			"style": {
+				"navigationBarTitleText": "HPV套餐详情"				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
 			"path": "pages/hpv-vaccine/hpv-vaccine",
 			"style": {
 				"navigationBarTitleText": "宫颈癌疫苗在线预约"				"navigationBarBackgroundColor": "#ffffff"

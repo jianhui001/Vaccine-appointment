@@ -66,3 +66,15 @@ export interface Xinguanorder {
 	time: string;
 	_id: string;
 }
+// ------------HPV筛选的导航和疫苗列表----------
+export interface Hpvselect {
+	name: string;
+	_id: string;
+}
+export interface Hpvlist {
+	hpv_id: string;
+	name: string;
+	describe: string[];
+	price: string[];
+	_id: string;
+}
