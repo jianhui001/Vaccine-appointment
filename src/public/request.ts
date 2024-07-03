@@ -71,6 +71,11 @@ const RequestApi = {
 	CoviduserOrder: () => request('coviduser_order', 'GET', {}),
 	CovidCancel: (data: object) => request('covidcancel', 'GET', data),
 	OtuHpv: () => request('otuhpv', 'GET', {}),
+	HpvPack: () => request('hpv_pack', 'GET', {}),
+	HpvPrice: (data: object) => request('hpv_price', 'POST', data),
+	ResHpv: (data: object) => request('reshpv', 'POST', data),
+	HpvuserOrder: () => request('hpvuser_order', 'GET', {}),
+	HpvCancel: (data: object) => request('hpvcancel', 'GET', data),
 }
 
 export { RequestApi }
