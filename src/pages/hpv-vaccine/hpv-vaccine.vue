@@ -19,7 +19,7 @@
             </view>
             <view class="hpv-price">¥{{item.price[0]}}-¥{{item.price[1]}}</view>
         </view>
-        <view class="hpv-reserve" @click="toReserve">去预约</view>
+        <view class="hpv-reserve" @click="toReserve(item._id, item.name, item.price, item.describe)">去预约</view>
     </view>
 </template>
 
@@ -50,9 +50,9 @@ function toggle(id:string, index: number) {
 }
 
 function toReserve(_id:string,name:string,price:string[],describe:string[]) {
-    let obj = JSON.stringify({_id, name, price, describe})
+    let obj = JSON.stringify({_id,name,price,describe})
     uni.navigateTo({
-        url: '/pages/hpv-vaccine/hpv-buy?value=' + obj
+        url:'/pages/hpv-vaccine/hpv-buy?value=' + obj
     })
 }
 </script>

@@ -1,15 +1,22 @@
 {
 	"pages": [
 		{
-			"path": "pages/hpv-vaccine/hpv-buy",
+			"path": "pages/my-service/hpv-view/index",
 			"style": {
-				"navigationBarTitleText": "HPV套餐详情"				
+				"navigationBarTitleText": "HPV疫苗预约订单"	,
+				"navigationBarBackgroundColor": "#ffffff"			
 			}
 		},
 		{
 			"path": "pages/hpv-vaccine/hpv-vaccine",
 			"style": {
 				"navigationBarTitleText": "宫颈癌疫苗在线预约"
+			}
+		},
+		{
+			"path": "pages/hpv-vaccine/hpv-buy",
+			"style": {
+				"navigationBarTitleText": "HPV套餐详情"				
 			}
 		},
 		{
