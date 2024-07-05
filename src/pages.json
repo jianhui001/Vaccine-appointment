@@ -1,6 +1,12 @@
 {
 	"pages": [
 		{
+			"path": "pages/nucleic-acid/index",
+			"style": {
+				"navigationBarTitleText": "核酸检测预约"
+			}
+		},
+		{
 			"path": "pages/my-service/hpv-view/index",
 			"style": {
 				"navigationBarTitleText": "HPV疫苗预约订单"	,

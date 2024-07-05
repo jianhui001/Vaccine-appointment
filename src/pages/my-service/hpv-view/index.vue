@@ -28,15 +28,15 @@
 
 <script setup lang="ts">
 import {ref} from 'vue'
-import { onShow } from "@dcloudio/uni-app"
+import {onShow} from "@dcloudio/uni-app"
 import {RequestApi} from '@/public/request'
-import type {Xinguanorder} from '@/public/decl-type'
+import type {Hpvorder} from '@/public/decl-type'
 import point from '@/com-components/point.vue'
 
 let order = ref<Hpvorder[]>([])
 let show = ref(false)
 onShow(async() => {
-    const res = await RequestApi.HpvuserOrder()
+    const res:any = await RequestApi.HpvuserOrder()
     order.value = res.data.data
     if(res.data.data.length == 0){
         show.value = true
@@ -44,7 +44,7 @@ onShow(async() => {
 })
 
 async function Cancel(id:string, index:number) {
-    const res = await RequestApi.HpvCancel({_id: id})
+    const res:any = await RequestApi.HpvCancel({_id: id})
     if(res.statusCode == 200){
         order.value[index].cancel = false
     }

@@ -76,6 +76,7 @@ const RequestApi = {
 	ResHpv: (data: object) => request('reshpv', 'POST', data),
 	HpvuserOrder: () => request('hpvuser_order', 'GET', {}),
 	HpvCancel: (data: object) => request('hpvcancel', 'GET', data),
+	NuataGet: () => request('nuataget', 'GET', {}),
 }
 
 export { RequestApi }
