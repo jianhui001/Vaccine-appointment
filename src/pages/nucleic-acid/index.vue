@@ -21,9 +21,9 @@
     <view class="nucleic-address">
         <view>
             <text>{{ nuclei_cacid.data.hospital }}</text>
-            <text> {{ nuclei_cacid.data.address }}</text>
+            <text class="text-color"> {{ nuclei_cacid.data.address }}</text>
         </view>
-        <view>
+        <view @click="makePhoneCall(nuclei_cacid.data.phone)">
             <image src="/static/other/dianhua.svg" mode="widthFix"/>
             <text class="text-color">电话</text>
         </view>
@@ -32,23 +32,25 @@
     <view class="xinguan-view new-style">
         <view class="xinguan-flex">
             <text>真实姓名</text>
-            <input placeholder="请输入真实姓名" placeholder-class="input-style">
+            <input placeholder="请输入真实姓名" v-model="submitData.name" placeholder-class="input-style">
         </view>
         <view class="xinguan-flex">
             <text>手机号</text>
-            <input placeholder="请输入手机号" type="number"  placeholder-class="input-style"/>
+            <input placeholder="请输入手机号" v-model="submitData.phone" type="number"  placeholder-class="input-style"/>
         </view>
         <view class="xinguan-flex">
             <text>身份证</text>
-            <input placeholder="请输入身份证"  placeholder-class="input-style"/>
+            <input placeholder="请输入身份证" v-model="submitData.id_card" placeholder-class="input-style"/>
         </view>
     </view>
 
-    <view class="nucleic-time new-style">
+    <view class="nucleic-time">
         <text class="nucleic-Title">选择预约时段</text>
         <scroll-view scroll-x class="scroll-view_H">
             <view class="nucleic-time-flex">
-                <view  v-for="(item, index) in nuclei_cacid.data.date" :key="index">
+                <view  v-for="(item, index) in nuclei_cacid.data.date" :key="index"
+                :class="index == timeIndex ? 'checkstyle' : ''"
+                @click="timeIndex = index, submitData.time = item.date">
                     <text>{{item.date}}</text>
                     <text>{{item.week}}</text>
                 </view>
@@ -67,7 +69,7 @@
     <view style="height: 300rpx;"></view>
     <view class="Total-view">
         <text>检测费用：￥{{ nuclei_cacid.data.price }}</text>
-        <text>提交</text>
+        <text @click="Submit">提交</text>
     </view>
 
 </template>
@@ -88,11 +90,36 @@ let nuclei_cacid = reactive<{data: Nucleicacid}>({data: {
 	date: [],
 	style: []
 }})
+
 onMounted(async ()=> {
     const res:any = await RequestApi.NuataGet()
     console.log(res)
     nuclei_cacid.data = res.data.data[0]
 })
+
+function makePhoneCall(phone: string) {
+    uni.makePhoneCall({
+        phoneNumber: phone,
+    })
+}
+
+let timeIndex = ref(-1)
+
+let submitData = reactive({
+    name:'',
+    phone:'',
+    id_card:'',
+    time:'',
+})
+
+async function Submit() {
+    uni.showLoading({title: '提交中',mask:true})
+    const res:any = await RequestApi.ResNuata(submitData) 
+    if(res.statusCode == 200) {
+        uni.hideLoading()
+        uni.navigateTo({ url: '/pages/my-service/nucleic-acid/index' })
+    } 
+}
 </script>
 
 <style>
@@ -105,7 +132,7 @@ page {
     background-color: #fff;
 }
 .nucleic-price{
-    padding-bottom: 20rpx;
+    align-items: center;
     display: flex;
 }
 .nucleic-price image {
@@ -121,7 +148,7 @@ page {
     font-size: 35rpx;
 }
 .pay-price text:nth-child(2) {
-    font-size: 30rpx;
+    font-weight: bold;
     color: #ff5f2c;
 }
 .nucleic-hint {
@@ -157,6 +184,10 @@ page {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.text-color{
+    font-size: 25rpx;
+    padding-top: 20rpx;
 }
 .new-style{
     margin: 20rpx;
@@ -208,4 +239,8 @@ page {
     line-height: 1.5;
     font-size: 28rpx;
 }
+.checkstyle{
+    background-color: #2c76ef !important;
+    color: #ffffff !important;
+  }
 </style>

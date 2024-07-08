@@ -66,6 +66,11 @@ export interface Xinguanorder {
 	time: string;
 	_id: string;
 }
+
+export interface Covidcancelapi {
+	_id: string;
+}
+
 // ------------HPV筛选的导航和疫苗列表----------
 export interface Hpvselect {
 	name: string;
@@ -128,4 +133,23 @@ export interface Nucleicacid {
 	date: Date[];
 	style: Style[];
 	_id?: string;
+}
+
+export interface Resnuataapi {
+	name: string;
+	phone: string;
+	id_card: string;
+	time: string;
+}
+
+export interface Nuatauserorder {
+	address: string;
+	cancel: boolean;
+	name: string;
+	order_number: string;
+	phy_name: string;
+	phy_time: string;
+	price: number;
+	time: string;
+	_id: string;
 }
