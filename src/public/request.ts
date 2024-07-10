@@ -83,4 +83,5 @@ const RequestApi = {
 	NuataCancel: (data: Covidcancelapi) => request('nuatacancel', 'GET', data),
 }
 
-export { RequestApi }
+let IMAGEURL = baseUrl + 'upload_picture'
+export { RequestApi, IMAGEURL }

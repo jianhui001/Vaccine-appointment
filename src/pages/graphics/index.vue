@@ -16,29 +16,23 @@
     <view class="graphics-back">
         <text class="graphics-Title">上传检查报告或患处照片</text>
         <view class="pat-image">
-            <view class="upload-Image">
-                <!-- <image
-                    src="/static/other/shanchu-goods.svg"
-                    mode="aspectFill"
-                /> -->
-                <image
-                    src="/static/other/shanchu-goods.svg"
-                    mode="widthFix"
-                />
+            <view class="upload-Image" v-for="(item, index) in submitData.ins_report" :key="index">
+                <image :src="item" mode="aspectFill"/>
+                <image src="/static/other/shanchu-goods.svg" mode="widthFix"
+                @click="submitData.ins_report.splice(index, 1)"/>
             </view>
+            <view><image src="/static/other/shuxing-img.png" @click="upload" mode="aspectFill"></image></view>
         </view>
     </view>
     <view class="graphics-back">
-        <view class="graphics-Title">选择就诊人</view>
-        <view>
-            <view class="patient-view">
-                <image
-                src="/static/other/touxiang.svg"
-                mode="widthFix"
-                />
-                <text>{{ name }}</text>
-                <text>选择就诊人</text>
-            </view>
+        <text class="graphics-Title">选择就诊人</text>
+        <view class="patient-view">
+            <image
+            src="/static/other/touxiang.svg"
+            mode="widthFix"
+            />
+            <text>jianhui</text>
+            <text>选择就诊人</text>
         </view>
     </view>
     <view style="height: 300rpx;"></view>
@@ -49,7 +43,22 @@
 </template>
 
 <script setup lang="ts">
-    
+import {reactive, ref} from 'vue'
+import {uploadImage} from '@/public/misc'
+import {IMAGEURL, RequestApi} from '@/public/request'
+import type { Graphics } from '@/public/decl-type'
+
+async function upload() {
+    const res: any = await uploadImage(IMAGEURL, '上传中','上传失败')
+    submitData.ins_report.push(JSON.parse(res.data).data)
+}
+
+let submitData = reactive<Graphics>({
+    illness:'',
+    guide:false,
+    ins_report:[],
+    patient_id:''
+})
 </script>
 
 <style>
@@ -98,6 +107,14 @@ textarea {
 .patient-view image {
     width: 120rpx;
     height: 120rpx;
+}
+.patient-view text:nth-child(2){
+    flex: 1;
+    padding: 0 50rpx;
+    font-weight: bold;
+}
+.patient-view text:nth-child(3){
+    color: #2c76ef;
 }
 .submit {
     background-color: #fff;
