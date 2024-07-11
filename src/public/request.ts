@@ -81,6 +81,7 @@ const RequestApi = {
 	ResNuata: (data: Resnuataapi) => request('resnuata', 'POST', data),
 	NuatauserOrder: () => request('nuatauser_order', 'GET', {}),
 	NuataCancel: (data: Covidcancelapi) => request('nuatacancel', 'GET', data),
+	GetpaTient: () => request('get_patient', 'GET', {}),
 }
 
 let IMAGEURL = baseUrl + 'upload_picture'

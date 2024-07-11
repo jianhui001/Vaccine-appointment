@@ -7,9 +7,9 @@
         />
     </view>
     <view class="graphics-back">
-        <checkbox-group bindchange="checkboxChange">
-          <label class="" >
-              <checkbox value="" checked="true" color="#0176ff"/>需要医生指导用药
+        <checkbox-group @change="checkboxChange">
+          <label>
+              <checkbox value="cd" :checked="submitData.guide" color="#0176ff"/>需要医生指导用药
           </label>
         </checkbox-group>
     </view>
@@ -47,6 +47,11 @@ import {reactive, ref} from 'vue'
 import {uploadImage} from '@/public/misc'
 import {IMAGEURL, RequestApi} from '@/public/request'
 import type { Graphics } from '@/public/decl-type'
+
+function checkboxChange(event: any) {
+    // console.log('event', event)
+    submitData.guide = event.detail.value.length === 0 ? false : true
+}
 
 async function upload() {
     const res: any = await uploadImage(IMAGEURL, '上传中','上传失败')
@@ -98,6 +103,16 @@ textarea {
     height: 100%;
     display: block;
     border-radius: 7rpx;
+}
+.upload-Image {
+    position: relative;
+}
+.upload-Image image:nth-child(2) {
+    width: 30rpx !important;
+    height: 30rpx !important;
+    position: absolute;
+    top: 8rpx;
+    right: 8rpx;
 }
 .patient-view {
     display: flex;

@@ -1,6 +1,20 @@
 {
 	"pages": [
 		{
+			"path": "pages/my-service/my-patient/add-patient",
+			"style": {
+				"navigationBarTitleText": "创建就诊人",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/my-service/my-patient/my-patient",
+			"style": {
+				"navigationBarTitleText": "我的就诊人",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
 			"path": "pages/graphics/index",
 			"style": {
 				"navigationBarTitleText": "图文咨询"
