@@ -1,5 +1,6 @@
 <template>
-    <view class="patient-infor" v-for="(item, index) in patient" :key="index">
+    <view class="patient-infor" v-for="(item, index) in patient" :key="index"
+    @click="checkedData(item.name, item._id)">
         <view class="patient-flex">
             <text class="patient-name">{{item.name}}</text>
             <text class="patient-text">{{ item.relation }}</text>
@@ -24,6 +25,7 @@ import { onShow } from "@dcloudio/uni-app";
 import {RequestApi} from '@/public/request'
 import point from '@/com-components/point.vue'
 import type {Mypatient} from '@/public/decl-type'
+import {myData} from '@/store/index'
 
 let patient = ref<Mypatient[]>([])
 onShow(async() => {
@@ -36,6 +38,13 @@ onShow(async() => {
 
 let show = ref(false)
 let title = ref('你还没有就诊人')
+
+const store = myData()
+function checkedData(name:string, _id:string) {
+    store.addPatient({name, _id})
+    uni.navigateBack({delta: 1})
+}
+
 
 function canCel() {
     uni.navigateBack({delta: 1})

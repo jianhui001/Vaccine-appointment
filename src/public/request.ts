@@ -1,6 +1,6 @@
 const baseUrl = 'https://meituan.thexxdd.cn/api/'
 import { Base64 } from "js-base64"
-import type { Resnuataapi,Covidcancelapi } from "./decl-type"
+import type { Resnuataapi, Covidcancelapi, Patientres, } from "./decl-type"
 
 function getToken(): string {
     const token = uni.getStorageSync('wxuser').user_Token || ''
@@ -82,7 +82,10 @@ const RequestApi = {
 	NuatauserOrder: () => request('nuatauser_order', 'GET', {}),
 	NuataCancel: (data: Covidcancelapi) => request('nuatacancel', 'GET', data),
 	GetpaTient: () => request('get_patient', 'GET', {}),
+	PatientRes: (data: Patientres) => request('patient_res', 'POST', data),
+	GrapHics: (data: Graphics) => request('graphics', 'POST', data),
 }
 
 let IMAGEURL = baseUrl + 'upload_picture'
-export { RequestApi, IMAGEURL }
+let AICARD = baseUrl + 'ai_card'
+export { RequestApi, IMAGEURL, AICARD}

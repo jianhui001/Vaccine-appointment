@@ -170,3 +170,11 @@ export interface Mypatient {
 	sex: string;
 	_id: string;
 }
+export interface Patientres {
+	name: string;
+	sex: string;
+	born: string;
+	relation: string;
+	id_card: string;
+	phone: string;
+}

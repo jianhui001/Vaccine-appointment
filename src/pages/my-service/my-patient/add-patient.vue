@@ -1,5 +1,5 @@
 <template>
-    <view class="AI-card" >
+    <view class="AI-card" @click="upload">
         <image
             src="/static/other/AI-shibie.svg"
             mode="widthFix"
@@ -56,6 +56,8 @@
 
 <script setup lang="ts">
 import {reactive, ref} from 'vue'
+import {AICARD, RequestApi} from '@/public/request'
+import {uploadImage} from '@/public/misc'
     let submitData = reactive({
         name:'',
         sex:'',
@@ -78,12 +80,29 @@ import {reactive, ref} from 'vue'
         submitData.relation = res == '0' ? '自己' : res == '1' ? '父母' : '其他'
     }
 
+    async function upload() {
+        const res:any = await uploadImage(AICARD, '识别中', '识别失败')
+        let data = JSON.parse(res.data)
+        if(res.statusCode == 200) {
+            submitData.name = data.data.name
+            submitData.sex = data.data.sex
+            submitData.born = data.data.born
+            submitData.id_card = data.data.id_card
+        } else {
+            uni.showToast({title: data.data,icon: 'none',duration: 1000});
+        }
+    }
+
+
     function canCel() {
         uni.navigateBack({delta:1})
     }
 
-    function aubMit() {
-
+    async function aubMit() {
+        const res:any = await RequestApi.PatientRes(submitData)
+        if(res.statusCode == 200) {
+            uni.navigateBack({delta:1})
+        }
     }
 </script>
 

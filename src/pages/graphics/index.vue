@@ -4,6 +4,7 @@
         <textarea maxlength="300" placeholder="为了更好获得医生帮助,请尽可能详细描述病情" 
         placeholder-class="textarea-color"
         :auto-focus="true"
+        v-model="submitData.illness"
         />
     </view>
     <view class="graphics-back">
@@ -31,14 +32,14 @@
             src="/static/other/touxiang.svg"
             mode="widthFix"
             />
-            <text>jianhui</text>
-            <text>选择就诊人</text>
+            <text>{{name}}</text>
+            <text @click="choosePatient">{{name == '' ? '选择就诊人' : '重新选择'}}</text>
         </view>
     </view>
     <view style="height: 300rpx;"></view>
     <view class="submit">
-        <text>取消</text>
-        <text>提交</text>
+        <text @click="canCel">取消</text>
+        <text @click="subMit">提交</text>
     </view>
 </template>
 
@@ -47,6 +48,7 @@ import {reactive, ref} from 'vue'
 import {uploadImage} from '@/public/misc'
 import {IMAGEURL, RequestApi} from '@/public/request'
 import type { Graphics } from '@/public/decl-type'
+import {myData} from '@/store/index'
 
 function checkboxChange(event: any) {
     // console.log('event', event)
@@ -64,6 +66,31 @@ let submitData = reactive<Graphics>({
     ins_report:[],
     patient_id:''
 })
+
+let name = ref('')
+const store = myData()
+store.$subscribe((mutation, state) => {
+    name.value = state.patient.name
+    submitData.patient_id = state.patient._id
+})
+
+function choosePatient() {
+    uni.navigateTo({
+        url:"/pages/my-service/my-patient/my-patient"
+    })
+}
+
+function canCel(){
+  uni.navigateBack({delta:1})
+}
+
+async function subMit() {
+    uni.showLoading({title:'提交中',mask:true})
+    const res:any = await RequestApi.GrapHics(submitData)
+    if(res.statusCode == 200){
+        uni.showToast({title: '提交成功',icon: 'none',duration: 1000});
+    }
+}
 </script>
 
 <style>
