@@ -1,6 +1,6 @@
 const baseUrl = 'https://meituan.thexxdd.cn/api/'
 import { Base64 } from "js-base64"
-import type { Resnuataapi, Covidcancelapi, Patientres, } from "./decl-type"
+import type { Resnuataapi, Covidcancelapi, Patientres, Graphics, FilterData, PhyId, PhyRes} from "./decl-type"
 
 function getToken(): string {
     const token = uni.getStorageSync('wxuser').user_Token || ''
@@ -84,6 +84,13 @@ const RequestApi = {
 	GetpaTient: () => request('get_patient', 'GET', {}),
 	PatientRes: (data: Patientres) => request('patient_res', 'POST', data),
 	GrapHics: (data: Graphics) => request('graphics', 'POST', data),
+	PhyTerm: () => request('phyterm', 'GET', {}),
+	PhySget: () => request('physget', 'GET', {}),
+	PhyQuery: (data: FilterData) => request('phyquery', 'POST', data),
+	PhyDetail: (data: PhyId) => request('phydateil', 'GET', data),
+	ResPhy: (data: PhyRes) => request('resphy', 'POST', data),
+	PhyuserOrder: () => request('phyuser_order', 'GET', {}),
+	PhyCancel: (data: Covidcancelapi) => request('phycancel', 'GET', data),
 }
 
 let IMAGEURL = baseUrl + 'upload_picture'

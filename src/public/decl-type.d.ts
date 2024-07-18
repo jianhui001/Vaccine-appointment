@@ -71,6 +71,9 @@ export interface Covidcancelapi {
 	_id: string;
 }
 
+export interface PhyId {
+	id: string;
+}
 // ------------HPV筛选的导航和疫苗列表----------
 export interface Hpvselect {
 	name: string;
@@ -177,4 +180,67 @@ export interface Patientres {
 	relation: string;
 	id_card: string;
 	phone: string;
+}
+export interface Phyterm {
+	query_val: string;
+	_id: string;
+	filter_val: string[];
+}
+export interface Phydata {
+	be_suit: string;
+	describe: string;
+	image: string;
+	price: number;
+	sales: number;
+	title: string;
+	_id: string;
+}
+export interface FilterData {
+	type: string;
+	sales: string;
+	price: string;
+}
+
+interface Crowd {
+	image: string;
+	name: string;
+}
+
+interface Content {
+	details: string;
+	thing: string;
+}
+
+interface Project {
+	title: string;
+	content: Content[];
+}
+
+export interface Phydetail {
+	image: string;
+	price: number;
+	sales: number;
+	title: string;
+	_id: string;
+	crowd: Crowd[];
+	date: Date[];
+	project: Project[];
+}
+
+export interface PhyRes {
+	phy_name: string;
+	phy_time: string;
+	patient_id: string;
+}
+
+export interface PhyOredr {
+	address: string;
+	cancel: boolean;
+	name: string;
+	order_number: string;
+	phy_name: string;
+	phy_time: string;
+	price: number;
+	time: string;
+	_id: string;
 }

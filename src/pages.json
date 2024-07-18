@@ -1,6 +1,26 @@
 {
 	"pages": [
 		{
+			"path": "pages/phy-exam/index",
+			"style": {
+				"navigationBarTitleText": "体检预约",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/my-service/phy-exam/index",
+			"style": {
+				"navigationBarTitleText": "体检预约订单",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/phy-exam/Details",
+			"style": {
+				"navigationBarTitleText": "体检详情"
+			}
+		},
+		{
 			"path": "pages/graphics/index",
 			"style": {
 				"navigationBarTitleText": "图文咨询"
