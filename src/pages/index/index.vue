@@ -4,7 +4,7 @@
     <view class="nav-height">某某省第一人民医院</view>
   </view>
   <view class="yuyue"> 
-    <image mode="aspectFill" src="https://diancan-1252107261.cos.accelerate.myqcloud.com/yiliao/nav-yiyu.png"></image>
+    <image mode="aspectFill" src="https://diancan-1252107261.cos.accelerate.myqcloud.com/yiliao/nav-yiyu.png" @click="jumpAssess('抑郁测评专业版', 0, '001')"></image>
   </view>
   <view class="gongge">
     <view v-for="(item, index) in vaccine" :key="index" >
@@ -43,7 +43,8 @@
   </view>
   <view class="self-test" v-if="selftest.length > 0">
     <view class="sele-test-top sele-test-flex sele-test-one sele-test-back" 
-    v-for="(item, index) in [selftest[0]]" :key="index">
+    v-for="(item, index) in [selftest[0]]" :key="index"
+    @click="jumpAssess(item.name, index, '001')">
       <view class="sele-test-view">
         <text class="top-title">{{ item.name }}</text>
         <text class="top-lable">{{item.describe}}</text>
@@ -59,7 +60,8 @@
         />
     </view>
     <view class="sele-test-top sele-test-flex sele-test-back" 
-    v-for="(item, index) in selftest.slice(1)" :key="index">
+    v-for="(item, index) in selftest.slice(1)" :key="index"
+    @click="jumpAssess(item.name, index, '002')">
       <view class="sele-test-view">
         <text class="top-title">{{item.name}}</text>
         <text class="top-lable top-min">{{item.question}}题 / {{item.minute}}分钟</text>
@@ -102,6 +104,24 @@ async function pageData() {
   registered.value = res.data.data[2].popular
   selftest.value = res.data.data[3].self_test
   console.log(registered.value)
+}
+
+function jumpAssess(name:string, index:number, type:string) {
+  if(type == '001'){
+    uni.navigateTo({
+      url:"/pages/self-test/topic?type=001&name=" + name
+    })
+  }else{
+    if(index == 0){
+      uni.navigateTo({
+      url:"/pages/self-test/topic?type=002&name=" + name
+    })
+    }else{
+      uni.navigateTo({
+      url:"/pages/self-test/topic?type=003&name=" + name
+    })
+    }
+  }
 }
 </script>
 

@@ -1,6 +1,27 @@
 {
 	"pages": [
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "xx省第一人民医院",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/self-test/result",
+			"style": {
+				"navigationBarTitleText": "测评结果",
+				"navigationBarBackgroundColor": "#d6e8ff"
+			}
+		},
+		{
+			"path": "pages/self-test/topic",
+			"style": {
+				"navigationBarTitleText": "测评题目",
+				"navigationBarBackgroundColor": "#d6e8ff"
+			}
+		},
+		{
 			"path": "pages/phy-exam/index",
 			"style": {
 				"navigationBarTitleText": "体检预约",
@@ -89,13 +110,6 @@
 			"path": "pages/login-page/index",
 			"style": {
 				"navigationBarTitleText": "登陆界面",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "xx省第一人民医院",
 				"navigationStyle": "custom"
 			}
 		},

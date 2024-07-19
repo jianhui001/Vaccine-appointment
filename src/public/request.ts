@@ -91,6 +91,12 @@ const RequestApi = {
 	ResPhy: (data: PhyRes) => request('resphy', 'POST', data),
 	PhyuserOrder: () => request('phyuser_order', 'GET', {}),
 	PhyCancel: (data: Covidcancelapi) => request('phycancel', 'GET', data),
+	DepressionTopics: () => request('depression_topics', 'GET', {}),
+	DepressiSon: (data: { value: string[] }) => request('depression', 'GET', data),
+	PrematureTopics: () => request('premature_topics', 'GET', {}),
+	PremaTure: (data: { value: string[] }) => request('premature', 'GET', data),
+	InsomniaTopics: () => request('insomnia_topics', 'GET', {}),
+	InsoMnia: (data: { value: string[] }) => request('insomnia', 'GET', data),
 }
 
 let IMAGEURL = baseUrl + 'upload_picture'
